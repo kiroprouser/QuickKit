@@ -1,0 +1,42 @@
+{
+  "name": "quickkit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "QuickKit — Everyday tools. One command away. A privacy-conscious, local-first collection of everyday browser utilities.",
+  "license": "MIT",
+  "author": "Asaad",
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test tests",
+    "prebuild": "bun run scripts/gen-static-assets.ts && bun run scripts/gen-icons.ts",
+    "build": "next build",
+    "start": "next start",
+    "pages:dev": "wrangler pages dev out",
+    "pages:deploy": "bun run build && wrangler pages deploy out --project-name quickkit",
+    "pages:deploy:only": "wrangler pages deploy out --project-name quickkit"
+  },
+  "dependencies": {
+    "lucide-react": "0.525.0",
+    "next": "16.1.3",
+    "next-themes": "0.4.6",
+    "qrcode": "1.5.4",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "zustand": "5.0.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.1.16",
+    "@types/bun": "1.2.0",
+    "@types/qrcode": "1.5.5",
+    "@types/react": "19.2.0",
+    "@types/react-dom": "19.2.0",
+    "eslint": "9.36.0",
+    "eslint-config-next": "16.1.3",
+    "sharp": "0.34.3",
+    "tailwindcss": "4.1.16",
+    "typescript": "5.9.2",
+    "wrangler": "^4.151.0"
+  }
+}

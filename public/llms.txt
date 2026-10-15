@@ -1,0 +1,72 @@
+# QuickKit
+
+> Everyday tools. One command away.
+
+QuickKit is a privacy-conscious, local-first collection of everyday browser utilities. All calculations run entirely in the user's browser — no account, no application backend, no database, no analytics. The production build is a static export of HTML, CSS, and JavaScript served from https://quickkit-59o.pages.dev.
+
+Product characteristics:
+- Local-first: every calculation runs in the browser
+- Offline-capable: installable as a PWA with a service worker for offline use
+- No account, no backend, no database
+- No analytics or tracking
+- Quick Command: a global deterministic command bar (Ctrl/Cmd+K) that runs the same engines as the graphical tools
+
+Site URL: https://quickkit-59o.pages.dev
+Repository: https://github.com/quickkit/quickkit
+License: MIT (https://opensource.org/license/mit)
+Author: Asaad
+
+## Tools
+
+QuickKit contains exactly eight tools:
+
+1. Unit Converter
+   URL: https://quickkit-59o.pages.dev/tools/unit-converter
+   Length, mass, temperature, speed, area, and digital storage.
+
+2. Percentage & Money
+   URL: https://quickkit-59o.pages.dev/tools/percentage
+   Percent of, discounts, tips, and percentage change.
+
+3. QR Generator
+   URL: https://quickkit-59o.pages.dev/tools/qr
+   Generate QR codes locally for text and URLs.
+
+4. Password & PIN
+   URL: https://quickkit-59o.pages.dev/tools/password
+   Cryptographically secure passwords and PINs, never saved.
+
+5. Date Calculator
+   URL: https://quickkit-59o.pages.dev/tools/date
+   Difference between dates, add and subtract durations.
+
+6. Text Tools
+   URL: https://quickkit-59o.pages.dev/tools/text
+   Word, character, and line counts; case and whitespace fixes.
+
+7. Random Picker
+   URL: https://quickkit-59o.pages.dev/tools/random
+   Random integers, choices, coin flips, and dice.
+
+8. Color Converter
+   URL: https://quickkit-59o.pages.dev/tools/color
+   HEX, RGB, HSL — bidirectional, with a live preview.
+
+## Important Pages
+
+- Guide (https://quickkit-59o.pages.dev/guide): QuickKit Quick Command reference — supported commands, examples, tool capabilities, keyboard shortcut, local/private processing.
+- About (https://quickkit-59o.pages.dev/about): what QuickKit is, local-first philosophy, offline capability, open-source nature, MIT license, and the developer.
+- Privacy (https://quickkit-59o.pages.dev/privacy): accurate privacy practices — no account, no backend, no database, calculations happen locally, sensitive transient data is not durably persisted.
+
+## Privacy / Runtime Characteristics
+
+- All calculations run locally in the browser
+- Sensitive transient data (generated passwords, PINs, QR payloads, raw text content, random choice lists) is held only in memory and is never durably persisted
+- Durable local storage is limited to: theme preference, favorites (tool identities only), Recent Tools (tool identities only, never inputs or results), and haptics preference
+- No operation/calculation history feature exists
+- Offline/PWA: a service worker caches the application shell and tool routes for offline use; no push notifications
+
+## Source
+
+Source repository: https://github.com/quickkit/quickkit
+Licensed under MIT.

@@ -1,0 +1,237 @@
+@import "tailwindcss";
+
+/*
+  QuickKit design language.
+  Warm off-white / beige backgrounds, white tool cards, burnt-orange primary
+  accent, dark neutral typography, subtle borders, restrained soft shadows,
+  rounded surfaces. Excellent light and dark themes.
+  No indigo / blue.
+*/
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  /* color tokens (driven by CSS vars so theme switching is one place) */
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--fg);
+  --color-fg-muted: var(--fg-muted);
+  --color-fg-subtle: var(--fg-subtle);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-primary: var(--primary);
+  --color-primary-fg: var(--primary-fg);
+  --color-primary-soft: var(--primary-soft);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+
+  /* typography */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+
+  /* radii */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+
+  /* shadows — restrained, warm */
+  --shadow-xs: 0 1px 2px 0 rgb(28 22 14 / 0.04);
+  --shadow-sm: 0 1px 3px 0 rgb(28 22 14 / 0.06), 0 1px 2px -1px rgb(28 22 14 / 0.05);
+  --shadow-md: 0 4px 12px -2px rgb(28 22 14 / 0.08), 0 2px 4px -2px rgb(28 22 14 / 0.05);
+  --shadow-lg: 0 12px 28px -8px rgb(28 22 14 / 0.12), 0 4px 8px -4px rgb(28 22 14 / 0.06);
+
+  /* content widths */
+  --content-max: 72rem;
+  --content-narrow: 36rem;
+
+  /* header height */
+  --header-h: 3.75rem;
+
+  /* motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* ---------- LIGHT (warm off-white / beige) ---------- */
+:root {
+  --bg: #faf6ef;            /* warm off-white beige */
+  --bg-elevated: #f5efe5;   /* slightly deeper warm beige */
+  --surface: #ffffff;       /* white tool cards */
+  --surface-2: #fbf7f1;     /* subtle inset surface */
+  --fg: #1f1a15;            /* dark warm neutral */
+  --fg-muted: #5c5347;      /* warm gray secondary */
+  --fg-subtle: #8a7f70;     /* warm gray tertiary */
+  --border: #e7dfd2;        /* warm subtle border */
+  --border-strong: #d6c9b3;
+  --primary: #c24a1a;       /* burnt orange */
+  --primary-fg: #ffffff;
+  --primary-soft: #f6e2d6;  /* burnt-orange tint */
+  --accent: #9c3d12;        /* deeper burnt orange for hover */
+  --accent-fg: #ffffff;
+  --ring: #c24a1a;
+  --success: #2f6b3a;
+  --warning: #b25410;
+  --danger: #9b2222;
+  color-scheme: light;
+}
+
+/* ---------- DARK (warm dark, not pure black) ---------- */
+.dark {
+  --bg: #181411;            /* warm dark */
+  --bg-elevated: #1d1814;
+  --surface: #221c17;       /* slightly elevated warm card */
+  --surface-2: #1a1612;
+  --fg: #f0ebe2;            /* warm off-white */
+  --fg-muted: #b3a896;
+  --fg-subtle: #8a7f70;
+  --border: #2f2820;
+  --border-strong: #443929;
+  --primary: #e8703a;       /* lighter burnt orange for dark contrast */
+  --primary-fg: #1a0d05;
+  --primary-soft: #2c1d12;
+  --accent: #f08650;
+  --accent-fg: #1a0d05;
+  --ring: #e8703a;
+  --success: #6fbf7e;
+  --warning: #e3a13a;
+  --danger: #e57373;
+  color-scheme: dark;
+}
+
+/* ---------- base ---------- */
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    /* No global `scroll-behavior: smooth` — it causes visible smooth scroll
+       animation during browser Back/Forward history restoration. Native
+       browser + Next.js scroll restoration is instant by default, which is
+       what we want. Intentional smooth scrolling (e.g. in-page anchor jumps)
+       is done via scrollIntoView({ behavior: 'smooth' }) in specific
+       components when needed. */
+    scroll-behavior: auto;
+    scrollbar-gutter: stable;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    min-height: 100dvh;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* selection */
+  ::selection {
+    background: var(--color-primary);
+    color: var(--color-primary-fg);
+  }
+
+  /* warm scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border-strong) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: var(--color-border-strong);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--color-fg-subtle);
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+}
+
+/* ---------- reusable component classes ---------- */
+@layer components {
+  .qk-card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .qk-card-inset {
+    background-color: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+  }
+
+  .qk-container {
+    width: 100%;
+    max-width: var(--content-max);
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 640px) {
+    .qk-container { padding-inline: 1.5rem; }
+  }
+  @media (min-width: 1024px) {
+    .qk-container { padding-inline: 2rem; }
+  }
+
+  .qk-focus-ring:focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+
+  .qk-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* restrained, state-tied motion utilities */
+  .qk-fade-in {
+    animation: qk-fade-in 0.18s var(--ease-out) both;
+  }
+  @keyframes qk-fade-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
